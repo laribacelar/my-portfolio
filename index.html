@@ -8,9 +8,9 @@
     <title>Larissa Bacelar</title>
     <link rel="stylesheet" href="assets/main.css" />
   </head>
-  <body class="bg-pink-200 max-w-6xl mx-auto opo">
-    <section id="menu" class="hidden fixed h-full w-full bg-pink-300 flex-col ">
-      <div class="pr-6 mt-4 text-right" id="btn-close">Close</div>
+  <body class="bg-pink-200 max-w-6xl mx-auto">
+    <section id="menu" class="hidden fixed h-full w-full bg-pink-300 flex-col opacity-0">
+      <div class="pr-6 mt-4 text-right cursor-pointer" id="btn-close">Close</div>
       <ul class="mt-32 text-5xl font-bold flex flex-col gap-10 items-center w-full justify-center">
         <li>Works</li>
         <li>blog</li>
@@ -187,12 +187,38 @@
       </footer>
     </main>
     <script>
-      document.getElementById("btn-menu").addEventListener("click", function() {
-        alert('entrou')
-        
-        document.getElementById("menu").style.display = "flex;"
-        document.getElementById("menu").style.display = "none;"
-      })
-    </script>
+      function fadeInEffect() {
+ let opacity = 0;
+ const interval = setInterval(function () {
+   opacity += 0.1;
+   document.getElementById("menu").style.opacity = opacity.toString();
+   if (opacity >= 1) {
+     clearInterval(interval);
+   }
+ }, 100);
+ }
+ function fadeOutEffect() {
+ let opacity = 1;
+ const interval = setInterval(function () {
+   opacity -= 0.1;
+   document.getElementById("menu").style.opacity = opacity.toString();
+   if (opacity <= 0) {
+     document.getElementById("menu").style.display = "none";
+     clearInterval(interval);
+    }
+  }, 100);
+  }
+  document
+ .getElementById("btn-menu")
+ .addEventListener("click", function () {
+   document.getElementById("menu").style.display = "flex";
+   fadeInEffect();
+ });
+ document
+ .getElementById("btn-close")
+ .addEventListener("click", function () {
+   fadeOutEffect();
+ });
+   </script> 
   </body>
 </html>
